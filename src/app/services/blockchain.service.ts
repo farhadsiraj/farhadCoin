@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Blockchain } from 'blockchain/src/blockchain';
 import EC from 'elliptic';
@@ -18,6 +19,20 @@ export class BlockchainService {
 
   getBlocks() {
     return this.blockchainInstance.chain;
+  }
+
+  addTransaction(tx) {
+    this.blockchainInstance.addTransaction(tx);
+  }
+
+  getPendingTransactions() {
+    return this.blockchainInstance.pendingTransactions;
+  }
+
+  minePendingTransactions() {
+    this.blockchainInstance.minePendingTransactions(
+      this.walletKeys[0].publicKey
+    );
   }
 
   private generateWalletKeys() {
