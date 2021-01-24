@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BlockchainService } from 'src/app/services/blockchain.service';
+import { BlockchainService } from '../../services/blockchain.service';
 
 @Component({
   selector: 'app-settings',

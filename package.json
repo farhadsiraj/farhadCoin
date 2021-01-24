@@ -22,6 +22,7 @@
     "blockchain": "github:farhadsiraj/blockchain",
     "crypto-js": "^4.0.0",
     "rxjs": "~6.6.0",
+    "savjeecoin": "github:Savjee/SavjeeCoin",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },

@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BlockchainService } from 'src/app/services/blockchain.service';
+import { Router } from '@angular/router';
+
+import {
+  BlockchainService,
+  IWalletKey,
+} from '../../services/blockchain.service';
 import { Transaction } from 'blockchain/src/blockchain';
-import { TransactionsTableComponent } from 'src/app/components/transactions-table/transactions-table.component';
 
 @Component({
   selector: 'app-create-transaction',
@@ -9,23 +13,34 @@ import { TransactionsTableComponent } from 'src/app/components/transactions-tabl
   styleUrls: ['./create-transaction.component.scss'],
 })
 export class CreateTransactionComponent implements OnInit {
-  public newTx;
-  public walletKey;
+  public newTx = new Transaction();
+  public ownWalletKey: IWalletKey;
 
-  constructor(private blockchainService: BlockchainService) {
-    this.walletKey = blockchainService.walletKeys[0];
-  }
-
-  ngOnInit() {
+  constructor(
+    private blockchainService: BlockchainService,
+    private router: Router
+  ) {
     this.newTx = new Transaction();
+    this.ownWalletKey = blockchainService.walletKeys[0];
   }
+
+  ngOnInit() {}
 
   createTransaction() {
-    this.newTx.fromAddress = this.walletKey.publicKey;
-    this.newTx.signTransaction(this.walletKey.keyObj);
+    const newTx = this.newTx;
 
-    this.blockchainService.addTransaction(this.newTx);
+    // Set the FROM address and sign the transaction
+    newTx.fromAddress = this.ownWalletKey.publicKey;
+    newTx.signTransaction(this.ownWalletKey.keyObj);
 
+    try {
+      this.blockchainService.addTransaction(this.newTx);
+    } catch (e) {
+      alert(e);
+      return;
+    }
+
+    this.router.navigate(['/new/transaction/pending', { addedTx: true }]);
     this.newTx = new Transaction();
   }
 }

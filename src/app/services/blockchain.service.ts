@@ -1,4 +1,3 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Blockchain } from 'blockchain/src/blockchain';
 import EC from 'elliptic';
@@ -8,25 +7,14 @@ import EC from 'elliptic';
 })
 export class BlockchainService {
   public blockchainInstance = new Blockchain();
-  public walletKeys = [];
+  public walletKeys: Array<IWalletKey> = [];
 
   constructor() {
     this.blockchainInstance.difficulty = 1;
-    this.blockchainInstance.minePendingTransactions('my-wallet-address');
-
     this.generateWalletKeys();
-  }
-
-  getBlocks() {
-    return this.blockchainInstance.chain;
-  }
-
-  addTransaction(tx) {
-    this.blockchainInstance.addTransaction(tx);
-  }
-
-  getPendingTransactions() {
-    return this.blockchainInstance.pendingTransactions;
+    this.blockchainInstance.minePendingTransactions(
+      this.walletKeys[0].publicKey
+    );
   }
 
   minePendingTransactions() {
@@ -35,7 +23,11 @@ export class BlockchainService {
     );
   }
 
-  private generateWalletKeys() {
+  addressIsFromCurrentUser(address) {
+    return address === this.walletKeys[0].publicKey;
+  }
+
+  generateWalletKeys() {
     const ec = new EC.ec('secp256k1');
     const key = ec.genKeyPair();
 
@@ -44,5 +36,21 @@ export class BlockchainService {
       publicKey: key.getPublic('hex'),
       privateKey: key.getPrivate('hex'),
     });
+
+    // console.log(this.walletKeys);
   }
+
+  getPendingTransactions() {
+    return this.blockchainInstance.pendingTransactions;
+  }
+
+  addTransaction(tx) {
+    this.blockchainInstance.addTransaction(tx);
+  }
+}
+
+export interface IWalletKey {
+  keyObj: any;
+  publicKey: string;
+  privateKey: string;
 }
