@@ -1,3 +1,7 @@
+![Video URL](https://emojipedia-us.s3.amazonaws.com/content/2020/04/05/yt.png)
+
+[Tutorial URL](https://www.youtube.com/watch?v=zVqczFZr124)
+
 # FarhadCoin
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.1.
