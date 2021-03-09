@@ -2,8 +2,6 @@
 
 A simple blockchain simulator built with Javascript and Angular that allows you to interact with a blockchain. You can see the blocks on chain, see transaction within blocks, create new transactions, and mine blocks.
 
-![Video URL](https://emojipedia-us.s3.amazonaws.com/content/2020/04/05/yt.png)
-
 [Tutorial URL](https://www.youtube.com/watch?v=zVqczFZr124)
 
 ## Getting Started
