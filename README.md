@@ -2,7 +2,7 @@
 
 A simple blockchain simulator built with TypeScript and Angular that allows you to interact with a blockchain. You can see the blocks on the chain, see transaction within blocks, create new transactions, and mine blocks.
 
-[Deployed Link](farhadcoin-1ff38.web.app)
+[Deployed Link](https://farhadcoin-1ff38.web.app)
 
 ## Getting Started
 
