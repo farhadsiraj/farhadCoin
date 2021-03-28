@@ -1,8 +1,6 @@
 # FarhadCoin
 
-A simple blockchain simulator built with Javascript and Angular that allows you to interact with a blockchain. You can see the blocks on chain, see transaction within blocks, create new transactions, and mine blocks.
-
-![Video URL](https://emojipedia-us.s3.amazonaws.com/content/2020/04/05/yt.png)
+A simple blockchain simulator built with TypeScript and Angular that allows you to interact with a blockchain. You can see the blocks on the chain, see transaction within blocks, create new transactions, and mine blocks.
 
 [Tutorial URL](https://www.youtube.com/watch?v=zVqczFZr124)
 
